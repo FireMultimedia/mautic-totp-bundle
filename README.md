@@ -1,106 +1,26 @@
-# Mautic Google Authenticator
+# Mautic TOTP Plugin
+[![license](https://img.shields.io/packagist/l/koco/mautic-recaptcha-bundle.svg)](LICENSE)
+[![mautic6](https://img.shields.io/badge/mautic-5.2.4-blue.svg)](https://mautic.org/releases/)
+[![mautic6](https://img.shields.io/badge/mautic-6-blue.svg)](https://mautic.org/releases/)
+[![mautic7](https://img.shields.io/badge/mautic-7-blue.svg)](https://mautic.org/releases/)
 
-A Mautic plugin for two-step verification login with Google Authenticator.
+Tested on Mautic 5.2.4, 6.0.0 and 7.0.0-alpha
 
+This plugin is offered by FireMultimedia.
+Would you like to use Mautic worry-free, with built-in extra features like this plugin? Get in touch with us at https://www.firemultimedia.nl/mautic-hosting/.
 
-### Prerequisites
+## Installation
+1. Execute `composer require firemultimedia/mautic-totp-bundle` in the main directory of the mautic installation
+2. flush the cache `php bin/console cache:clear`.
+3. Navigate to the Plugins page and click "Install/Upgrade Plugins".
 
-* Mautic 5.0+
-* Project was tested on Mautic 5.0.2
+You should now see the new plug-in.
 
-### Installing
+![plugins](.github/doc/plugins.png "plugins")
 
-Clone repo.
+## Configuration
+Scan the QR code or manually copy the secret key into your OTP provider.
 
-```sh
-$ git clone <repo-url>
-```
+![config](.github/doc/config.png "config")
 
-For development symlink the plugin, to plugins directory.
-
-```sh
-cd <mautic-root>/plugins
-ln -s <repo-root-folder>HostnetAuthBundle .
-```
-
-Clear the cache & reload
-
-```sh
-cd <mautic-root>
-rm -rf var/cache/dev/* var/cache/prod/*
-php bin/console mautic:plugins:reload --env=dev
-```
-
-### Coding style & Syntax Check
-
-Use Mautic core style fixer/checker (composer fixcs) .
-
-## Deployment
-
-Download this project as a zip file and extract the content from the zip file.
-
-Copy the **HostnetAuthBundle** folder to the **plugins** folder of your Mautic installation.
-
-Clear the cache running this command from the Mautic main folder:
-
-```sh
-$ rm -rf var/cache/prod/*
-```
-
-Reload the plugins:
-
-```sh
-$ php bi/console mautic:plugins:reload --env=prod
-```
-
-( Alternatively you can access the plugins page in the Mautic panel and click on **Install/Update Plugins**.)
-
-### Activation and Usage
-
-Once the plugin is installed you will need to activate it. Select the Google Authenticator on the plugins page and turn the **Published** option to **Yes**.
-
-To use this integration you need to install the **Google Authenticator** app on your phone and scan the QR Code that appears on the plugin settings page.
-
-Once you've done that, when you log into your Mautic you'll be requested to enter a token that you can get on your app.
-
-In the options you can set how many days you wish to not enter the code again when you set a browser as trusted.
-
-## Changelog
-
-[todo]
-
-## Built With
-
-* [Mautic](hhttps://github.com/mautic/mautic) - Marketing Automation Tool
-* [Composer](https://getcomposer.org/) - Dependency Management
-
-## Contributing
-
-Any contributions are welcome.
-
-## Versioning
-
-[todo]
-
-## Authors
-
-Este plugin é mantido pela empresa Hostnet Hospedagem de Sites, esperamos que seja útil para você.
-
-A Hostnet oferece diversas soluções mais aprimoradas para a utilização do Mautic, seja no modo "faça você mesmo", ou com todo o ambiente gerenciado por nós.
-
-Saiba mais nos links:  
-https://www.hostnet.com.br/hospedagem-de-sites/  
-https://www.hostnet.com.br/mautic-automacao-marketing/
-
-***
-
-This plugin is developed by Hostnet Web Hosting, we hope it will be useful for you.
-
-Hostnet offers many and more enhanced solutions for using Mautic, both in "do it yourself" mode or with the whole environment managed by us.
-
-Learn more at:  
-https://www.hostnet.com.br/hospedagem-de-sites/  
-https://www.hostnet.com.br/mautic-automacao-marketing/
-
-
-
+Confirm that you have scanned the code and activate the plug-in.

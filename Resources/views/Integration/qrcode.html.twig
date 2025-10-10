@@ -1,0 +1,23 @@
+<div class="row form-group">
+    <div class="col-xs-12">
+        <div style="max-width:212px;width:212px;max-height:212px;height:212px;margin:0 auto;">
+            {{ otp_qr|raw }}
+        </div>
+    </div>
+</div>
+
+<div class="row form-group">
+    <div class="col-xs-12">
+        <label class="control-label"
+               for="otp-secret">
+            {{ 'mautic.integration.totp.settings.secret_key'|trans }} (RFC6238):
+        </label>
+
+        <input id="otp-secret"
+               class="form-control"
+               type="text"
+               value="{{ otp_code }}"
+               readonly="readonly"
+               onclick="this.select();" />
+    </div>
+</div>

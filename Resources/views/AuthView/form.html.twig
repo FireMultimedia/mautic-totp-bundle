@@ -1,0 +1,61 @@
+{% extends '@MauticUser/Security/base.html.twig' %}
+
+{% block header %}
+    {{ 'mautic.user.auth.header'|trans }}
+{% endblock %}
+
+{% block content %}
+    <form id="totp"
+          class="form-group login-form"
+          name="totp"
+          role="form"
+          action=""
+          method="post">
+        {% if error is defined %}
+            <div class="alert-danger mb-md">{{ error|default('') }}</div>
+        {% endif %}
+
+        <div class="input-group mb-md">
+            <span class="input-group-addon">
+                <i class="ri-lock-password-line"></i>
+            </span>
+
+            <label class="sr-only"
+                   for="password">
+                {{ 'mautic.plugin.totp.placeholder'|trans }}
+            </label>
+
+            <input id="password"
+                   class="form-control input-lg"
+                   type="text"
+                   name="_code"
+                   pattern="[0-9]{6}"
+                   placeholder="{{ 'mautic.plugin.totp.placeholder'|trans }}"
+                   autofocus
+                   required />
+        </div>
+
+        <input type="hidden"
+               name="_csrf_token"
+               value="{{ csrf_token('totp') }}" />
+
+        <input id="hash"
+               type="hidden"
+               name="hash" />
+
+        <button class="btn btn-lg btn-primary btn-block"
+                type="submit">
+            {{ 'mautic.plugin.totp.submit'|trans }}
+        </button>
+    </form>
+
+    <script src="{{ asset('plugins/MauticTOTPBundle/Assets/js/fingerprint2.min.js') }}"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            new Fingerprint2().get((result) => {
+                document.querySelector('#hash').value = result;
+            });
+        });
+    </script>
+{% endblock %}

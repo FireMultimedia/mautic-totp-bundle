@@ -1,0 +1,41 @@
+{
+    "name": "firemultimedia/mautic-totp-bundle",
+    "description": "This plugin adds generic time-based one-time password (TOTP) integration to mautic.",
+    "type": "mautic-plugin",
+    "license": "GPL-3.0-only",
+    "authors": [{
+        "name": "Henrique Rodrigues",
+        "email": "henrique@hostnet.com.br"
+    }, {
+        "name": "Pedro de Jesus",
+        "email": "web.pedrodejesus@gmail.com"
+    }, {
+        "name": "Volha Pivavarchyk",
+        "email": "volha@aivie.ch"
+    }, {
+        "name": "Matic Zagmajster",
+        "email": "maticzagmajster@gmail.com"
+    }, {
+        "name": "FireMultimedia B.V.",
+        "email": "support@firemultimedia.nl"
+    }],
+    "keywords": [
+        "mautic",
+        "plugin",
+        "integration",
+        "one-time password",
+        "OTP",
+        "Time-based one-time password",
+        "TOTP",
+        "Two-factor authentication",
+        "2FA"
+    ],
+    "require": {
+        "php": "^8.1|^8.2",
+        "mautic/core-lib": "^5.0|^6.0|^7.0",
+        "chillerlan/php-qrcode": "^5.0"
+    },
+    "extra": {
+        "install-directory-name": "MauticTOTPBundle"
+    }
+}
