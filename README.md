@@ -19,6 +19,10 @@ You should now see the new plug-in.
 ![plugins](.github/doc/plugins.png "plugins")
 
 ## Configuration
+You can configure the plug-in from the Plugins page Scan or from your Account page.
+
+![account](.github/doc/account.png "account")
+
 Scan the QR code or manually copy the secret key into your OTP provider.
 
 ![config](.github/doc/config.png "config")
