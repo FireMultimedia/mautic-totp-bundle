@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 
+use MauticPlugin\MauticTOTPBundle\EventListener\UserAccountSubscriber;
 use MauticPlugin\MauticTOTPBundle\EventListener\UserSubscriber;
 
 use MauticPlugin\MauticTOTPBundle\Controller\v6\AuthController   as AuthControllerv6;
@@ -85,6 +86,14 @@ return [
 
     "services" => [
         "events" => [
+            "mautic.totp.event_listener.user_account_subscriber" => [
+                "class" => UserAccountSubscriber::class,
+
+                "arguments" => [
+                    "router"
+                ]
+            ],
+
             "mautic.totp.event_listener.user_subscriber" => [
                 "class" => UserSubscriber::class,
 
