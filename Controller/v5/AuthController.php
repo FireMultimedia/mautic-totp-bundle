@@ -31,7 +31,9 @@ use Mautic\CoreBundle\Helper\AppVersion;
 // assume that Mautic developers use sane versioning
 $mauticVersion = str_replace(".", "", explode("-", (new AppVersion())->getVersion())[0]);
 
-if($mauticVersion < 600) {
+$mauticVersion = str_split((string)$mauticVersion);
+
+if($mauticVersion[0] < 6) {
     class AuthController extends CommonController {
 
         /**
