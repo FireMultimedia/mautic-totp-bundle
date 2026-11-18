@@ -15,6 +15,10 @@ Changes are documented in the following order:
 
 ## [Unreleased](https://github.com/FireMultimedia/mautic-totp-bundle/compare/main...develop)
 
+## [1.2.0] - 2026-11-16
+### Deprecated
+ - Mautic versions prior to 7.2.2 are no longer supported
+
 ## [1.1.0] - 2025-10-16
 ### Added
  - Add setup button to Account page

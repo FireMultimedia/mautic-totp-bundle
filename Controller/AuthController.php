@@ -1,29 +1,23 @@
 <?php declare(strict_types=1);
 
-namespace MauticPlugin\MauticTOTPBundle\Controller\v6;
-
-use Mautic\CoreBundle\Controller\CommonController;
-
-use Mautic\CoreBundle\Factory\ModelFactory;
-use Mautic\CoreBundle\Helper\UserHelper;
-use Mautic\CoreBundle\Helper\CoreParametersHelper;
-use Mautic\CoreBundle\Translation\Translator;
-use Mautic\CoreBundle\Service\FlashBag;
-use Mautic\CoreBundle\Security\Permissions\CorePermissions;
-
-use Mautic\PluginBundle\Helper\IntegrationHelper;
-
-use MauticPlugin\MauticTOTPBundle\Helper\AuthenticatorHelper;
-use MauticPlugin\MauticTOTPBundle\Integration\v6\TOTPIntegration;
+namespace MauticPlugin\MauticTOTPBundle\Controller;
 
 use Doctrine\Persistence\ManagerRegistry;
-
+use Mautic\CoreBundle\Controller\CommonController;
+use Mautic\CoreBundle\Factory\ModelFactory;
+use Mautic\CoreBundle\Helper\CoreParametersHelper;
+use Mautic\CoreBundle\Helper\UserHelper;
+use Mautic\CoreBundle\Security\Permissions\CorePermissions;
+use Mautic\CoreBundle\Service\FlashBag;
+use Mautic\CoreBundle\Translation\Translator;
+use Mautic\PluginBundle\Helper\IntegrationHelper;
+use MauticPlugin\MauticTOTPBundle\Helper\AuthenticatorHelper;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use MauticPlugin\MauticTOTPBundle\Integration\TOTPIntegration;
 
 class AuthController extends CommonController {
 
@@ -37,8 +31,8 @@ class AuthController extends CommonController {
      * @param EventDispatcherInterface $dispatcher
      * @param Translator               $translator
      * @param FlashBag                 $flashBag
-     * @param RequestStack|null        $requestStack
-     * @param CorePermissions|null     $security
+     * @param RequestStack             $requestStack
+     * @param CorePermissions          $security
      * @param IntegrationHelper        $integrationHelper
      */
     public function __construct(
@@ -49,8 +43,8 @@ class AuthController extends CommonController {
         protected EventDispatcherInterface $dispatcher,
         protected Translator               $translator,
         private   FlashBag                 $flashBag,
-        private   ?RequestStack            $requestStack,
-        protected ?CorePermissions         $security,
+        private   RequestStack             $requestStack,
+        protected CorePermissions          $security,
         protected IntegrationHelper        $integrationHelper
     ) {
         parent::__construct(

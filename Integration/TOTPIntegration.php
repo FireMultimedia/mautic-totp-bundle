@@ -1,10 +1,10 @@
-<?php
+<?php declare(strict_types=1);
 
-namespace MauticPlugin\MauticTOTPBundle\Integration\v5;
+namespace MauticPlugin\MauticTOTPBundle\Integration;
 
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Mautic\CoreBundle\Form\Type\YesNoButtonGroupType;
 use Mautic\CoreBundle\Helper\CacheStorageHelper;
 use Mautic\CoreBundle\Helper\EncryptionHelper;
@@ -23,7 +23,6 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -46,8 +45,7 @@ class TOTPIntegration extends AbstractIntegration {
     public function __construct(
         protected EventDispatcherInterface   $dispatcher,
                   CacheStorageHelper         $cacheStorageHelper,
-        protected EntityManager              $em,
-        protected ?SessionInterface          $session,
+        protected EntityManagerInterface     $em,
         protected RequestStack               $requestStack,
         protected RouterInterface            $router,
         protected TranslatorInterface        $translator,
@@ -69,7 +67,6 @@ class TOTPIntegration extends AbstractIntegration {
             $dispatcher,
             $cacheStorageHelper,
             $em,
-            $session,
             $requestStack,
             $router,
             $translator,
