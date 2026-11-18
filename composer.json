@@ -31,8 +31,8 @@
         "2FA"
     ],
     "require": {
-        "php": "^8.1|^8.2",
-        "mautic/core-lib": "^5.0|^6.0|^7.0",
+        "php": "^8.3",
+        "mautic/core-lib": ">=7.2.2",
         "chillerlan/php-qrcode": "^5.0"
     },
     "extra": {

@@ -1,22 +1,15 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace MauticPlugin\MauticTOTPBundle\EventListener;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-
 use Mautic\CoreBundle\Helper\AppVersion;
 use Mautic\CoreBundle\Security\Permissions\CorePermissions;
-
 use Mautic\PluginBundle\Helper\IntegrationHelper;
-
-use MauticPlugin\MauticTOTPBundle\Integration\v5\TOTPIntegration as TOTPIntegrationv6;
-use MauticPlugin\MauticTOTPBundle\Integration\v6\TOTPIntegration as TOTPIntegrationv5;
-
+use MauticPlugin\MauticTOTPBundle\Integration\TOTPIntegration;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-
 use Symfony\Component\Routing\RouterInterface;
 
 /**
@@ -62,17 +55,7 @@ class UserSubscriber implements EventSubscriberInterface {
         if(!$event->isMainRequest())
             return false;
 
-        // assume that Mautic developers use sane versioning
-        $mauticVersion = str_replace(".", "", explode("-", (new AppVersion())->getVersion())[0]);
-
-        switch(true) {
-            case $mauticVersion >= 600:
-                $integration = $this->integration->getIntegrationObject(TOTPIntegrationv6::INTEGRATION_NAME);
-                break;
-            case $mauticVersion >= 500:
-                $integration = $this->integration->getIntegrationObject(TOTPIntegrationv5::INTEGRATION_NAME);
-                break;
-        }
+        $integration = $this->integration->getIntegrationObject(TOTPIntegration::INTEGRATION_NAME);
 
         if(!$integration)
             return false;
